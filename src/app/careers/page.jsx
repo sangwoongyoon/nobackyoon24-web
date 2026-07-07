@@ -53,7 +53,7 @@ export default function CareersPage() {
           </div>
 
           <div className="mt-10 text-center">
-            <Link href="/about" className="btn-ghost">먼저 윤이사 소개 보기</Link>
+            <Link href="/about" className="btn-ghost">먼저 윤상웅 소개 보기</Link>
           </div>
         </div>
       </section>

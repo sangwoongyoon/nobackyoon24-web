@@ -49,7 +49,7 @@ export default function HomePage() {
           <div>
             <p className="eyebrow">Who</p>
             <h2 className="mt-2 text-3xl font-extrabold text-ink">
-              {site.brandName}, {site.personName}
+              {site.brandName}
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-muted">{about.oneLiner}</p>
             <p className="mt-4 leading-relaxed text-muted">{about.body[0]}</p>

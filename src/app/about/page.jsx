@@ -9,7 +9,7 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About"
-        title={`${site.brandName} · ${site.personName}`}
+        title={site.brandName}
         description={about.oneLiner}
       />
 

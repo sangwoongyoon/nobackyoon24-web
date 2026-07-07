@@ -4,45 +4,84 @@ import { useState } from "react";
 import { site } from "@/data/site";
 
 // =====================================================================
-//  문의 폼
-//  - 현재는 백엔드(전송 API)가 없어 '이메일 앱으로 열기(mailto)' 방식으로 동작합니다.
-//    → 실제 서버 전송을 원하면 handleSubmit 의 TODO 부분에 fetch 로 교체하세요.
-//  - 개인정보 수집·이용 동의 체크박스는 법적 요구사항이라 필수로 두었습니다.
-//  - 스팸 방지: 실제 운영 시 reCAPTCHA(구글) 또는 Cloudflare Turnstile 연동 권장.
-//    (아래 [스팸방지] 영역 참고)
+//  문의 폼 (자동 전송 방식 · Web3Forms)
+//  - 고객이 작성 후 "문의 보내기"를 누르면 서버를 거쳐 상무님 이메일
+//    (site.contact.email)로 바로 전송됩니다.
+//  - 무료 서비스 Web3Forms 사용. site.contact.formKey 에 액세스 키만
+//    넣으면 작동합니다. (web3forms.com 에서 이메일로 무료 발급)
+//  - 개인정보 동의 체크박스는 법적 요구사항이라 필수입니다.
+//  - botcheck(숨은 필드)로 기본 스팸을 걸러줍니다.
 // =====================================================================
 export default function ContactForm({ defaultType = "building" }) {
   const [type, setType] = useState(defaultType); // building | recruit
   const [agree, setAgree] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle | sending | success | error
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (!agree) {
       alert("개인정보 수집·이용에 동의해주세요.");
       return;
     }
-    const f = e.target;
-    const kind = type === "recruit" ? "[중개사 합류 문의]" : "[빌딩 문의]";
-    const subject = `${kind} ${f.name.value} 님`;
-    const body = [
-      `구분: ${type === "recruit" ? "중개사 합류" : "빌딩 문의"}`,
-      `성함: ${f.name.value}`,
-      `연락처: ${f.phone.value}`,
-      `이메일: ${f.email.value}`,
-      "",
-      "문의 내용:",
-      f.message.value,
-    ].join("\n");
+    setStatus("sending");
 
-    // TODO(백엔드 연동): 아래 mailto 대신 fetch("/api/contact", {...}) 로 교체 가능
-    const mailto = `mailto:${site.contact.email}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
+    const f = e.target;
+    const kind = type === "recruit" ? "중개사 합류 문의" : "빌딩 문의";
+    const payload = {
+      access_key: site.contact.formKey,
+      subject: `[${kind}] ${f.name.value} 님`,
+      from_name: `노빠꾸 윤상웅 홈페이지`,
+      문의구분: kind,
+      성함: f.name.value,
+      연락처: f.phone.value,
+      이메일: f.email.value,
+      문의내용: f.message.value,
+      botcheck: f.botcheck.checked, // 스팸봇 감지용 숨은 필드
+    };
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus("success");
+        f.reset();
+        setAgree(false);
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      setStatus("error");
+    }
   }
 
   const inputClass =
     "w-full rounded-lg border border-black/15 px-4 py-3 text-sm outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20";
+
+  // 전송 성공 화면
+  if (status === "success") {
+    return (
+      <div className="flex flex-col items-center justify-center py-10 text-center">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand/10 text-2xl">
+          ✅
+        </div>
+        <h3 className="mt-4 text-lg font-bold text-ink">문의가 접수되었습니다</h3>
+        <p className="mt-2 text-sm text-muted">
+          빠른 시일 내 연락드리겠습니다. 급하시면 전화(010-9259-7016)로 연락 주세요.
+        </p>
+        <button
+          type="button"
+          onClick={() => setStatus("idle")}
+          className="btn-ghost mt-6"
+        >
+          새 문의 작성
+        </button>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
@@ -94,6 +133,16 @@ export default function ContactForm({ defaultType = "building" }) {
         />
       </div>
 
+      {/* 스팸봇 감지용 숨은 필드 (사람에게는 보이지 않음) */}
+      <input
+        type="checkbox"
+        name="botcheck"
+        className="hidden"
+        style={{ display: "none" }}
+        tabIndex={-1}
+        autoComplete="off"
+      />
+
       {/* 개인정보 동의 (필수) */}
       <label className="flex items-start gap-2.5 text-sm text-muted">
         <input
@@ -112,14 +161,21 @@ export default function ContactForm({ defaultType = "building" }) {
         </span>
       </label>
 
-      {/* [스팸방지] 실제 운영 시 이 자리에 reCAPTCHA / Turnstile 위젯을 넣으세요 */}
-      {/* 예: <div className="g-recaptcha" data-sitekey="..."></div> */}
+      {status === "error" && (
+        <p className="rounded-lg bg-red-50 p-3 text-sm text-red-600">
+          전송에 실패했습니다. 잠시 후 다시 시도하시거나 전화(010-9259-7016)로 연락 주세요.
+        </p>
+      )}
 
-      <button type="submit" className="btn-ghost w-full">
-        문의 보내기
+      <button
+        type="submit"
+        disabled={status === "sending"}
+        className="btn-ghost w-full disabled:opacity-60"
+      >
+        {status === "sending" ? "전송 중…" : "문의 보내기"}
       </button>
       <p className="text-center text-xs text-muted">
-        전송 버튼을 누르면 메일 앱이 열립니다. 빠른 상담은 아래 전화·카카오톡을 이용하세요.
+        빠른 상담은 전화·카카오톡을 이용하세요.
       </p>
     </form>
   );
