@@ -1,0 +1,22 @@
+{
+  "name": "nobackyoon24-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "노빠꾸 윤이사 · 원빌딩부동산중개(주) 공식 홈페이지",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "14.2.5",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "10.4.19",
+    "postcss": "8.4.39",
+    "tailwindcss": "3.4.6"
+  }
+}
