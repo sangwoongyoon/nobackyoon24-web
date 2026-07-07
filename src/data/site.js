@@ -12,6 +12,10 @@ export const site = {
   role: "상무",
   domain: "nobackyoon24.com",
 
+  // 카카오맵 JavaScript 키 (developers.kakao.com 에서 무료 발급)
+  // 키를 받으면 아래 따옴표 안에 붙여넣으세요.
+  kakaoMapKey: "PASTE_KAKAO_JS_KEY",
+
   // ---- 브랜드 한 줄 슬로건 ----
   slogan: "돌려 말하지 않습니다. 숫자와 데이터로 증명하는 강남 빌딩 중개.",
 
@@ -57,8 +61,7 @@ export const home = {
   // 신뢰 지표 (홈 화면 숫자 배지)
   stats: [
     { value: "8년", label: "강남 상업용 빌딩 경력" },
-    // 아래 칸은 프로젝트 작업 시 "누적 거래액 ○○억+" 등으로 교체 예정
-    { value: "강남 3구", label: "상업용 빌딩 전문" },
+    { value: "4,000억+", label: "누적 거래액" },
     { value: "W.C.D", label: "자체 데이터 시스템" },
   ],
 };
