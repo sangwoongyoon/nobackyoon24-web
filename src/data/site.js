@@ -14,7 +14,7 @@ export const site = {
 
   // 카카오맵 JavaScript 키 (developers.kakao.com 에서 무료 발급)
   // 키를 받으면 아래 따옴표 안에 붙여넣으세요.
-  kakaoMapKey: "PASTE_KAKAO_JS_KEY",
+  kakaoMapKey: "3f3d278a2af3b80ada36a2d0a365cb22",
 
   // ---- 브랜드 한 줄 슬로건 ----
   slogan: "돌려 말하지 않습니다. 숫자와 데이터로 증명하는 강남 빌딩 중개.",

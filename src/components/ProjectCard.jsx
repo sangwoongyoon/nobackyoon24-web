@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import SmartPhoto from "./SmartPhoto";
+import KakaoMap from "./KakaoMap";
 
 // 프로젝트(중개 실적) 카드 — 사진 | 지도 | 정보
 export default function ProjectCard({ project }) {
-  const { dong, type, price, region, mapQuery, land, building, date, mapImg } = project;
-  const kakaoUrl = `https://map.kakao.com/?q=${encodeURIComponent(mapQuery)}`;
+  const { dong, type, price, region, mapQuery, land, building, date } = project;
   // 사진 파일명 = 주소에서 시·구를 뺀 "동 지번" (예: "삼성동 41-16")
   const photoName = mapQuery.split(" ").slice(2).join(" ");
 
@@ -16,24 +16,9 @@ export default function ProjectCard({ project }) {
           <SmartPhoto name={photoName} alt={`${region} ${dong} 건물`} />
         </div>
 
-        {/* 지도 */}
+        {/* 지도 (정확한 주소로 카카오맵) */}
         <div className="relative border-y border-black/5 md:border-x md:border-y-0">
-          {mapImg ? (
-            <img src={mapImg} alt={`${region} ${dong} 위치`} loading="lazy" className="h-56 w-full object-cover md:h-full" />
-          ) : (
-            <a
-              href={kakaoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-56 flex-col items-center justify-center gap-2 bg-brand/5 text-brand md:h-full"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 21s-7-5.2-7-11a7 7 0 1114 0c0 5.8-7 11-7 11z" />
-                <circle cx="12" cy="10" r="2.4" />
-              </svg>
-              <span className="text-xs font-semibold">카카오맵에서 보기</span>
-            </a>
-          )}
+          <KakaoMap query={mapQuery} />
         </div>
 
         {/* 정보 */}
