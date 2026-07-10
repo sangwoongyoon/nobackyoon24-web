@@ -24,13 +24,14 @@ export default function SmartPhoto({ name, alt }) {
     );
   }
 
+  // 모바일: 사진 전체가 보이도록 자연 비율(h-auto) / 데스크톱: 3단 카드에 맞게 채움(object-cover)
   return (
     <img
       src={`/photos/${encodeURIComponent(name)}.${EXTS[i]}`}
       alt={alt}
       loading="lazy"
       onError={() => setI((n) => n + 1)}
-      className="h-56 w-full object-cover md:h-full"
+      className="w-full h-auto object-cover md:h-full"
     />
   );
 }
