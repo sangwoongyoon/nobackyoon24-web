@@ -20,9 +20,12 @@ function loadSDK(key) {
 }
 
 // 정확한 주소로 카카오맵을 그립니다. 화면에 들어올 때만 로딩(성능).
+// 카카오 도메인 반영 완료되면 true 로 바꾸면 실제 지도가 켜집니다.
+const MAP_ENABLED = false;
+
 export default function KakaoMap({ query }) {
   const key = site.kakaoMapKey;
-  const hasKey = key && !key.startsWith("PASTE");
+  const hasKey = MAP_ENABLED && key && !key.startsWith("PASTE");
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
   const [failed, setFailed] = useState(false);

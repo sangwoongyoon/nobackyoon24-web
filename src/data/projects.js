@@ -734,7 +734,7 @@ export const projects = [
     type: "매도",
     price: "약 19억",
     region: "서울특별시 관악구",
-    mapQuery: "서울특별시 관악구 신림동",
+    mapQuery: "서울특별시 관악구 신림동 706-1",
     land: "121.00㎡(36.60평)",
     building: "323.40㎡(97.82평)",
     date: "2025.02",
