@@ -25,7 +25,7 @@ export function postMetadata(board, slug) {
       publishedTime: p.date,
       modifiedTime: p.updated,
       authors: [site.personName],
-      images: p.thumbnail ? [p.thumbnail] : undefined,
+      images: p.cover || p.thumbnail ? [p.cover || p.thumbnail] : undefined,
     },
   };
 }
@@ -39,7 +39,11 @@ const DEAL_FIELDS = [
   ["landArea", "대지면적"],
   ["buildingArea", "연면적"],
   ["zoning", "용도지역"],
-  ["builtYear", "준공연도"],
+  ["builtYear", "사용승인"],
+  ["scale", "건물규모"],
+  ["road", "도로여건"],
+  ["parking", "주차"],
+  ["coverage", "건폐율·용적률"],
   ["buyerType", "매수 주체"],
   ["dealDate", "거래 시점"],
 ];
@@ -71,7 +75,7 @@ export default function BoardPost({ board, slug }) {
       mainEntityOfPage: url,
       author,
       publisher: { "@type": "Organization", name: site.companyName, url: base() },
-      image: p.thumbnail ? [`${base()}${p.thumbnail}`] : undefined,
+      image: p.cover || p.thumbnail ? [p.cover, p.thumbnail].filter(Boolean).map((i) => `${base()}${i}`) : undefined,
       keywords: p.tags.join(", ") || undefined,
       ...(p.source ? { isBasedOn: p.source.url } : {}),
     },
@@ -165,9 +169,9 @@ export default function BoardPost({ board, slug }) {
           </section>
         ) : null}
 
-        {p.thumbnail ? (
+        {p.cover || p.thumbnail ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={p.thumbnail} alt={p.title} className="mt-8 w-full rounded-xl" />
+          <img src={p.cover || p.thumbnail} alt={p.coverAlt || p.title} className="mt-8 w-full rounded-xl" />
         ) : null}
 
         {/* 본문 */}
