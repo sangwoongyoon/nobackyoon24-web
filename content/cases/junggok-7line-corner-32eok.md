@@ -4,7 +4,7 @@ description: "서울 광진구 중곡동 24-1 외 1필지, 7호선 중곡역 도
 date: 2026-10-06
 category: "실거래 분석"
 tags: ["중곡동 빌딩매매", "중곡동 재건축부지", "7호선 역세권 상가", "코너상가 매매", "광진구 꼬마빌딩"]
-draft: true
+draft: false
 thumbnail: "/images/cases/junggok-24-1/thumbnail.webp"
 cover: "/images/cases/junggok-24-1/corner.webp"
 coverAlt: "광진구 중곡동 24-1 코너 건물 전경 – 6m·6m 도로가 만나는 코너의 4층 타일 외관 건물"
