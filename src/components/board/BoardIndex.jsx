@@ -66,9 +66,9 @@ function PostCard({ post, href, board }) {
     >
       {post.thumbnail ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={post.thumbnail} alt={post.title} className="aspect-[16/10] w-full object-cover" loading="lazy" />
+        <img src={post.thumbnail} alt={post.title} className="aspect-square w-full object-cover" loading="lazy" />
       ) : (
-        <div className="flex aspect-[16/10] w-full items-end bg-gradient-to-br from-brand-dark to-brand-light p-5">
+        <div className="flex aspect-square w-full items-end bg-gradient-to-br from-brand-dark to-brand-light p-5">
           {board === "cases" && deal.price ? (
             <span className="text-2xl font-extrabold text-accent">{deal.price}</span>
           ) : (
