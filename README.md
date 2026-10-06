@@ -90,7 +90,7 @@ tailwind.config.js      ← ★ 브랜드 색상
 
 | 탭 | 폴더 | 주소 |
 |---|---|---|
-| 매각사례 | `content/cases/` | /cases/파일명 |
+| 매각사례 (시중 실거래 분석) | `content/cases/` | /cases/파일명 |
 | 칼럼 | `content/columns/` | /columns/파일명 |
 | 부동산뉴스 | `content/news/` | /news/파일명 |
 
@@ -99,6 +99,8 @@ tailwind.config.js      ← ★ 브랜드 색상
 3. 완성되면 `draft: true` → `draft: false`
 4. `git push` → 자동 배포 + sitemap.xml 자동 갱신
 
+- 본인 계약 실적은 기존 `프로젝트` 탭(projects.js) 그대로 사용
+- 네이버 블로그 글을 그대로 복사하지 말고 제목·요약·FAQ·비교표를 붙여 재구성 (구글 중복 콘텐츠 방지)
 - `_`로 시작하는 파일(양식)은 사이트에 안 나옵니다.
 - `draft: true` 글은 로컬(`npm run dev`)에서만 보이고 실제 사이트엔 숨겨집니다.
 - 구글 AI 검색 대응: 핵심 요약(summary)·FAQ·작성자·날짜·구조화데이터(JSON-LD)가 자동으로 들어갑니다.

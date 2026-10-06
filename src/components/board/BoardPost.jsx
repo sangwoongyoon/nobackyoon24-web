@@ -33,13 +33,14 @@ export function postMetadata(board, slug) {
 // 매각사례 거래 정보 항목 (frontmatter deal: 아래 키)
 const DEAL_FIELDS = [
   ["location", "위치"],
-  ["price", "매각가"],
+  ["price", "거래금액"],
   ["pricePerPyeong", "토지 평단가"],
+  ["buildingPerPyeong", "연면적 평단가"],
   ["landArea", "대지면적"],
   ["buildingArea", "연면적"],
-  ["yield", "수익률"],
-  ["dealType", "거래 유형"],
-  ["period", "매각 소요기간"],
+  ["zoning", "용도지역"],
+  ["builtYear", "준공연도"],
+  ["buyerType", "매수 주체"],
   ["dealDate", "거래 시점"],
 ];
 

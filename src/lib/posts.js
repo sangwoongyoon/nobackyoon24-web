@@ -15,9 +15,9 @@ export const boards = {
     label: "매각사례",
     href: "/cases",
     eyebrow: "Deal Cases",
-    title: "빌딩 매각사례",
+    title: "빌딩 매각사례 분석",
     description:
-      "노빠꾸 윤상웅이 직접 진행한 강남·서울 상업용 빌딩 매각 사례입니다. 매각가, 수익률, 매각 전략과 결과를 숫자로 공개합니다.",
+      "서울 주요 지역에서 실제 거래된 빌딩 매각 사례를 실거래 데이터로 분석합니다. 매각가·평단가·매수 주체·주변 시세 대비 수준까지 숫자로 정리합니다.",
     schemaType: "Article",
   },
   columns: {
