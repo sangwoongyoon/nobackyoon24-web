@@ -122,6 +122,9 @@ export const navItems = [
   { label: "홈", href: "/" },
   { label: "내소개", href: "/about" },
   { label: "프로젝트", href: "/projects" },
+  { label: "매각사례", href: "/cases" },
+  { label: "칼럼", href: "/columns" },
+  { label: "부동산뉴스", href: "/news" },
   { label: "문의", href: "/contact" },
   { label: "입사지원", href: "/careers" },
 ];

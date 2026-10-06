@@ -18,6 +18,9 @@ export default function Footer() {
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
             <Link href="/about" className="hover:text-white">내소개</Link>
             <Link href="/projects" className="hover:text-white">프로젝트</Link>
+            <Link href="/cases" className="hover:text-white">매각사례</Link>
+            <Link href="/columns" className="hover:text-white">칼럼</Link>
+            <Link href="/news" className="hover:text-white">부동산뉴스</Link>
             <Link href="/contact" className="hover:text-white">문의</Link>
             <Link href="/careers" className="hover:text-white">입사지원</Link>
             <Link href="/privacy" className="hover:text-white">개인정보처리방침</Link>
