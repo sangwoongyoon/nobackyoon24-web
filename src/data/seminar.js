@@ -98,13 +98,13 @@ export const seminar = {
   storiesStatus: "upcoming",
   storiesReleaseLabel: "11월 8일부터 순차 공개",
   videos: [
-    { title: "원빌딩 세미나를 알게 된 계기", youtubeId: "" },
-    { title: "첫인상 vs 입사 후 느낀 장점", youtubeId: "" },
-    { title: "대기업 재직 중 세미나에 온 이유", youtubeId: "" },
-    { title: "패션 업계에서 원빌딩을 선택한 이유", youtubeId: "" },
-    { title: "세미나 듣고 입사를 결심한 이유", youtubeId: "" },
-    { title: "대기업 퇴사하고 입사한 이유", youtubeId: "" },
-    { title: "2기를 고민하는 분들께 한마디", youtubeId: "" },
+    { title: "원빌딩 세미나를 알게 된 계기", youtubeId: "", thumbnail: "/images/seminar/shorts/ep01.webp" },
+    { title: "첫인상 vs 입사 후 느낀 장점", youtubeId: "", thumbnail: "/images/seminar/shorts/ep02.webp" },
+    { title: "대기업 재직 중 세미나에 온 이유", youtubeId: "", thumbnail: "/images/seminar/shorts/ep03.webp" },
+    { title: "패션 업계에서 원빌딩을 선택한 이유", youtubeId: "", thumbnail: "/images/seminar/shorts/ep04.webp" },
+    { title: "세미나 듣고 입사를 결심한 이유", youtubeId: "", thumbnail: "/images/seminar/shorts/ep05.webp" },
+    { title: "대기업 퇴사하고 입사한 이유", youtubeId: "", thumbnail: "/images/seminar/shorts/ep06.webp" },
+    { title: "2기를 고민하는 분들께 한마디", youtubeId: "", thumbnail: "/images/seminar/shorts/ep07.webp" },
   ],
 
   // ---- WHO SHOULD ATTEND ----

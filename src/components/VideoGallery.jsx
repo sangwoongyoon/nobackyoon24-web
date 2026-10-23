@@ -32,29 +32,49 @@ export default function VideoGallery({ videos = [], pendingLabel = "곧 공개" 
               onClick={() => setActive(v)}
               className="group relative aspect-[9/16] overflow-hidden rounded-xl bg-brand text-left shadow-sm transition enabled:hover:-translate-y-0.5 enabled:hover:shadow-lg disabled:cursor-default"
             >
-              {thumb ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={thumb} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-105" />
+              {v.thumbnail ? (
+                <>
+                  {/* 직접 만든 썸네일: 이미지에 문구가 있으니 덮지 않고 아래쪽에만 버튼 */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={v.thumbnail} alt={v.title} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]" />
+                  <div className="absolute inset-x-0 bottom-[6%] flex justify-center">
+                    {ready ? (
+                      <span className="flex items-center gap-1.5 rounded-full bg-white/95 px-4 py-2 text-xs font-extrabold text-brand shadow-lg transition group-hover:scale-105 sm:text-sm">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                        영상 보기
+                      </span>
+                    ) : (
+                      <span className="rounded-full border border-white/40 bg-black/40 px-3 py-1 text-[11px] font-semibold text-white/85 sm:text-xs">{pendingLabel}</span>
+                    )}
+                  </div>
+                </>
               ) : (
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-light via-brand to-brand-dark" />
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-
-              {/* 재생 버튼 */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                {ready ? (
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-brand shadow-lg transition group-hover:scale-110">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                  </span>
+                <>
+                {thumb ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={thumb} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-105" />
                 ) : (
-                  <span className="rounded-full border border-white/30 px-3 py-1 text-xs font-semibold text-white/70">{pendingLabel}</span>
+                  <div className="absolute inset-0 bg-gradient-to-br from-brand-light via-brand to-brand-dark" />
                 )}
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
 
-              <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">
-                <p className="text-[11px] font-semibold text-accent">1기 입사자 인터뷰 {String(i + 1).padStart(2, "0")}</p>
-                <p className="mt-1 text-sm font-bold leading-snug text-white">{v.title}</p>
-              </div>
+                {/* 재생 버튼 */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  {ready ? (
+                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-brand shadow-lg transition group-hover:scale-110">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                    </span>
+                  ) : (
+                    <span className="rounded-full border border-white/30 px-3 py-1 text-xs font-semibold text-white/70">{pendingLabel}</span>
+                  )}
+                </div>
+
+                <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">
+                  <p className="text-[11px] font-semibold text-accent">1기 입사자 인터뷰 {String(i + 1).padStart(2, "0")}</p>
+                  <p className="mt-1 text-sm font-bold leading-snug text-white">{v.title}</p>
+                </div>
+                </>
+              )}
             </button>
           );
         })}
