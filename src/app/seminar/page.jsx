@@ -1,4 +1,5 @@
 import VideoGallery from "@/components/VideoGallery";
+import SeminarPopup from "@/components/SeminarPopup";
 import { seminar } from "@/data/seminar";
 import { site } from "@/data/site";
 
@@ -62,6 +63,7 @@ export default function SeminarPage() {
 
   return (
     <>
+      <SeminarPopup onSeminarPage />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* 01 HERO */}
