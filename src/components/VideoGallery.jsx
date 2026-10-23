@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 // 세로형(쇼츠) 리뷰영상 갤러리 — 카드를 누르면 팝업으로 재생
 // video: { title, youtubeId?, src? }
-export default function VideoGallery({ videos = [] }) {
+export default function VideoGallery({ videos = [], pendingLabel = "곧 공개" }) {
   const [active, setActive] = useState(null);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function VideoGallery({ videos = [] }) {
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
                   </span>
                 ) : (
-                  <span className="rounded-full border border-white/30 px-3 py-1 text-xs font-semibold text-white/70">곧 공개</span>
+                  <span className="rounded-full border border-white/30 px-3 py-1 text-xs font-semibold text-white/70">{pendingLabel}</span>
                 )}
               </div>
 
