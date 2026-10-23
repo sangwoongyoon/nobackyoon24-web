@@ -4,36 +4,25 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { seminar } from "@/data/seminar";
 
-// 채용세미나 팝업 (홈 + 세미나 페이지)
+// 홈 첫 화면 채용세미나 팝업
 //  - seminar.popup.show 를 false 로 바꾸면 꺼집니다.
 //  - endAt 이 지나면 자동으로 안 뜹니다.
 //  - "오늘 하루 보지 않기" 누르면 그 브라우저에선 자정까지 안 뜹니다.
-//  - 팝업 위쪽 카드 어디를 눌러도 신청 폼으로 바로 이동합니다.
 const KEY = "seminarPopupHideUntil";
-
-function dDay(endAt) {
-  const event = new Date(endAt);
-  const now = new Date();
-  const a = Date.UTC(event.getFullYear(), event.getMonth(), event.getDate());
-  const b = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
-  const d = Math.round((a - b) / 86400000);
-  return d > 0 ? `D-${d}` : d === 0 ? "D-DAY" : null;
-}
 
 export default function SeminarPopup({ onSeminarPage = false }) {
   const cfg = seminar.popup;
   const [open, setOpen] = useState(false);
-  const [dday, setDday] = useState(null);
 
   useEffect(() => {
     if (!cfg?.show) return;
     if (cfg.endAt && Date.now() > new Date(cfg.endAt).getTime()) return;
     let hidden = false;
     try {
-      hidden = Number(window.localStorage.getItem(KEY) || 0) > Date.now();
+      const until = Number(window.localStorage.getItem(KEY) || 0);
+      hidden = until > Date.now();
     } catch {}
     if (hidden) return;
-    setDday(dDay(cfg.endAt));
     const t = setTimeout(() => setOpen(true), 400);
     return () => clearTimeout(t);
   }, [cfg]);
@@ -60,109 +49,88 @@ export default function SeminarPopup({ onSeminarPage = false }) {
 
   if (!open) return null;
 
-  const apply = { href: seminar.applyUrl, target: "_blank", rel: "noopener noreferrer", onClick: () => setOpen(false) };
-
   return (
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="원빌딩 채용 세미나 2기 신청"
+      aria-label="원빌딩 채용 세미나 2기 안내"
       onClick={() => setOpen(false)}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-4 backdrop-blur-[2px]"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-4 backdrop-blur-[2px]"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-[400px] overflow-hidden rounded-2xl bg-white shadow-2xl"
-        style={{ animation: "popupIn .3s cubic-bezier(.2,.9,.3,1.2)" }}
+        className="w-full max-w-[400px] overflow-hidden rounded-2xl bg-white shadow-2xl"
+        style={{ animation: "popupIn .28s ease-out" }}
       >
-        <button
-          type="button"
-          onClick={() => setOpen(false)}
-          aria-label="닫기"
-          className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/25 text-white hover:bg-black/40"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" d="M6 6l12 12M18 6L6 18" /></svg>
-        </button>
+        <div className="relative bg-gradient-to-br from-brand-dark via-brand to-brand-light px-6 pb-6 pt-7 text-white">
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="닫기"
+            className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full text-white/70 hover:bg-white/10 hover:text-white"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" d="M6 6l12 12M18 6L6 18" /></svg>
+          </button>
 
-        {/* 위쪽 카드 전체 = 신청 링크 */}
-        <a {...apply} className="block bg-gradient-to-br from-brand-dark via-brand to-brand-light px-6 pb-6 pt-6 text-white">
-          <div className="flex items-center gap-2">
-            {dday ? (
-              <span className="rounded-md bg-red-500 px-2.5 py-1 text-sm font-extrabold tracking-wide text-white" style={{ animation: "blink 1.6s ease-in-out infinite" }}>
-                {dday}
-              </span>
-            ) : null}
-            <span className="rounded-md bg-accent px-2.5 py-1 text-xs font-extrabold text-brand-dark">선착순 20명 무료</span>
-          </div>
-
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-2.5 py-1 text-[11px] font-bold text-brand-dark">
+            <span className="h-1.5 w-1.5 rounded-full bg-red-500" /> 참가자 모집중
+          </span>
           <p className="mt-4 text-[15px] font-semibold leading-snug text-white/85">
             {seminar.heroCopy[0]}
             <span className="block text-accent">{seminar.heroCopy[1]}</span>
           </p>
           <p className="mt-4 text-xs font-bold tracking-[0.2em] text-accent">{seminar.eyebrow}</p>
-          <h2 className="text-[32px] font-extrabold leading-tight">{seminar.title}</h2>
-          <p className="mt-1 text-lg font-bold tabular-nums">{cfg.dateText}</p>
+          <h2 className="text-3xl font-extrabold">{seminar.title}</h2>
 
-          <div className="mt-4 flex items-center gap-3">
+          {/* 멘토 3인 */}
+          <div className="mt-5 flex items-center gap-3">
             <div className="flex -space-x-3">
               {seminar.mentors.map((m) =>
                 m.photo ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img key={m.name} src={m.photo} alt={m.name} className="h-11 w-11 rounded-full border-2 border-brand bg-white object-cover object-top" />
+                  <img key={m.name} src={m.photo} alt={m.name} className="h-11 w-11 rounded-full border-2 border-brand object-cover object-top" />
                 ) : (
                   <span key={m.name} className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-brand bg-accent font-bold text-brand-dark">{m.name[0]}</span>
                 )
               )}
             </div>
             <p className="text-xs leading-snug text-white/80">
-              현직 멘토 3인이 직접 공개
+              현직 멘토 3인
               <br />
               {seminar.mentors.map((m) => m.name).join(" · ")}
             </p>
           </div>
-        </a>
+        </div>
 
-        <div className="px-5 pb-4 pt-5">
-          {/* 메인 CTA */}
-          <a
-            {...apply}
-            className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-accent-dark via-accent to-accent-dark px-6 py-5 text-[24px] font-extrabold text-brand-dark shadow-[0_8px_24px_-6px_rgba(200,162,75,.8)] transition active:scale-[.98]"
-            style={{ animation: "ctaPulse 1.8s ease-in-out infinite" }}
-          >
-            <span className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/3 skew-x-[-20deg] bg-white/50 blur-sm" style={{ animation: "shine 2.4s ease-in-out infinite" }} />
-            <span className="relative">지금 무료 신청</span>
-            <svg className="relative transition group-hover:translate-x-1" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M13 6l6 6-6 6" /></svg>
-          </a>
-          <p className="mt-2.5 text-center text-xs font-semibold text-muted">
-            참가비 0원 · 자격증 없어도 OK · <span className="text-red-500">선착순 마감</span>
+        <div className="px-6 py-5">
+          <p className="text-xl font-extrabold tabular-nums text-brand">
+            {cfg.dateText}
           </p>
+          <p className="mt-1 text-sm font-semibold text-muted">참가비 무료 · 선착순 20명 · 자격증 없어도 OK</p>
 
-          <div className="mt-3 text-center">
+          <div className="mt-5 grid gap-2">
+            <a href={seminar.applyUrl} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)} className="btn-primary w-full py-3.5">
+              무료 세미나 신청하기
+            </a>
             {onSeminarPage ? (
-              <button type="button" onClick={() => setOpen(false)} className="text-sm font-semibold text-brand underline underline-offset-4">
-                멘토·프로그램 먼저 보기
+              <button type="button" onClick={() => setOpen(false)} className="btn-ghost w-full py-3">
+                세미나 자세히 보기
               </button>
             ) : (
-              <Link href="/seminar" onClick={() => setOpen(false)} className="text-sm font-semibold text-brand underline underline-offset-4">
+              <Link href="/seminar" onClick={() => setOpen(false)} className="btn-ghost w-full py-3">
                 세미나 자세히 보기
               </Link>
             )}
           </div>
         </div>
 
-        <div className="flex border-t border-black/10 text-[13px]">
+        <div className="flex border-t border-black/10 text-sm">
           <button type="button" onClick={hideToday} className="flex-1 py-3 text-muted hover:bg-black/5">오늘 하루 보지 않기</button>
           <span className="w-px bg-black/10" />
           <button type="button" onClick={() => setOpen(false)} className="flex-1 py-3 font-semibold text-ink hover:bg-black/5">닫기</button>
         </div>
       </div>
-      <style>{`
-        @keyframes popupIn{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
-        @keyframes ctaPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
-        @keyframes shine{0%{left:-50%}60%,100%{left:130%}}
-        @keyframes blink{0%,100%{opacity:1}50%{opacity:.55}}
-        @media (prefers-reduced-motion: reduce){*{animation:none!important}}
-      `}</style>
+      <style>{`@keyframes popupIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}`}</style>
     </div>
   );
 }
