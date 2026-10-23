@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { home, about, site } from "@/data/site";
+import SeminarPopup from "@/components/SeminarPopup";
 
 export default function HomePage() {
   return (
     <>
+      <SeminarPopup />
       {/* ===================== 히어로 ===================== */}
       <section className="relative overflow-hidden bg-brand text-white">
         <div className="absolute inset-0 bg-gradient-to-br from-brand-dark via-brand to-brand-light opacity-95" />

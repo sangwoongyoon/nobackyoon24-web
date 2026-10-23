@@ -20,6 +20,14 @@ export const seminar = {
   // 모든 신청 버튼이 연결되는 구글폼
   applyUrl: "https://forms.gle/xRt9vkXuRKG3fWh36",
 
+  // ---- 홈 첫 화면 팝업 ----
+  //  show: false 로 바꾸면 꺼짐 / endAt 이 지나면 자동으로 안 뜸
+  popup: {
+    show: true,
+    endAt: "2026-11-28T17:00:00+09:00",
+    dateText: "2026.11.28(토) 15:00–17:00",
+  },
+
   // ---- HERO ----
   heroCopy: ["다른 곳도 볼 수 있습니다.", "하지만 꼭 가야 할 곳은 따로 있습니다."],
   eyebrow: "2026 WONBUILDING",
@@ -54,7 +62,7 @@ export const seminar = {
       headline: "수습에서 상무까지, 최연소·최단기 승진",
       copy: "경험이 없던 신입에서 상무까지. 성장의 차이를 만드는 것은 실행 가능한 시스템입니다.",
       points: ["수습사원에서 상무까지 성장한 과정", "경험이 없어도 따라 할 수 있는 실전 영업 시스템", "체계적이고 최적화된 중개 프로세스"],
-      photo: "",
+      photo: "/images/seminar/mentor-yoonsangwoong.webp",
     },
     {
       name: "안형준",
@@ -62,7 +70,7 @@ export const seminar = {
       headline: "누적 거래액 6,000억 원",
       copy: "늦은 시작이 한계는 아닙니다. 누적 거래액 6,000억 원에 담긴 실전 경험.",
       points: ["늦게 시작해 큰 성과를 이룬 성장 과정", "빌딩 매매 현장에서 거래를 만드는 노하우", "초보 중개사가 배워야 할 영업 관점"],
-      photo: "",
+      photo: "/images/seminar/mentor-anhyeongjun.webp",
     },
     {
       name: "이소망",
