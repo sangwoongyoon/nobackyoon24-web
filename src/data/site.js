@@ -118,14 +118,28 @@ export const careers = {
 };
 
 // ---- 네비게이션 메뉴 (순서/이름 편집 가능) ----
+//  children 이 있으면 마우스 오버(PC) / 탭(모바일) 시 하위 메뉴가 펼쳐집니다.
 export const navItems = [
   { label: "홈", href: "/" },
   { label: "내소개", href: "/about" },
   { label: "프로젝트", href: "/projects" },
-  { label: "매각사례", href: "/cases" },
-  { label: "칼럼", href: "/columns" },
-  { label: "부동산뉴스", href: "/news" },
+  {
+    label: "인사이트",
+    children: [
+      { label: "매각사례", href: "/cases", desc: "시장 빌딩 매각 사례 분석" },
+      { label: "칼럼", href: "/columns", desc: "빌딩 투자·중개 칼럼" },
+      { label: "부동산뉴스", href: "/news", desc: "꼭 알아야 할 시장 뉴스" },
+    ],
+  },
   { label: "문의", href: "/contact" },
-  { label: "채용세미나", href: "/seminar" },
   { label: "입사지원", href: "/careers" },
 ];
+
+// ---- 한시적 강조 버튼 (메뉴 옆 골드 버튼) ----
+//  세미나 끝나면 show: false 로 바꾸면 사라집니다.
+export const navHighlight = {
+  show: true,
+  label: "채용세미나 2기",
+  badge: "모집중",
+  href: "/seminar",
+};
