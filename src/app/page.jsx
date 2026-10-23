@@ -9,7 +9,7 @@ export default function HomePage() {
       {/* ===================== 히어로 ===================== */}
       <section className="relative overflow-hidden bg-brand text-white">
         <div className="absolute inset-0 bg-gradient-to-br from-brand-dark via-brand to-brand-light opacity-95" />
-        <div className="container-x relative py-24 sm:py-32">
+        <div className="container-x relative py-14 sm:py-32">
           <p className="eyebrow text-accent">{site.companyName}</p>
           <h1 className="mt-4 text-4xl font-extrabold leading-tight sm:text-6xl">
             {home.heroTitle}
@@ -30,6 +30,33 @@ export default function HomePage() {
               {home.ctaSecondary.label}
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* ===================== 바로가기 (리틀리 대체) ===================== */}
+      <section className="border-b border-black/5 bg-white">
+        <div className="container-x grid grid-cols-2 gap-3 py-6 sm:grid-cols-4">
+          {[
+            { label: "채용세미나 2기", sub: "11.28(토) 무료 신청", href: "https://forms.gle/xRt9vkXuRKG3fWh36", ext: true, hot: true },
+            { label: "매입·매각 상담", sub: "카카오톡 1:1", href: site.contact.kakaoOpenChatUrl, ext: true },
+            { label: "매수·매도 프로젝트", sub: "진행 중인 물건", href: "/projects" },
+            { label: "네이버 블로그", sub: "부동산 투자의 모든 것", href: site.contact.naverBlogUrl, ext: true },
+          ].map((q) => (
+            <a
+              key={q.label}
+              href={q.href}
+              {...(q.ext ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              className={`group rounded-xl border p-4 transition hover:-translate-y-0.5 hover:shadow-md ${
+                q.hot ? "border-accent bg-accent/10" : "border-black/10 bg-white"
+              }`}
+            >
+              <span className="block text-[15px] font-extrabold leading-snug text-ink">{q.label}</span>
+              <span className="mt-1 flex items-center justify-between text-xs text-muted">
+                {q.sub}
+                <span className="text-brand transition group-hover:translate-x-0.5">→</span>
+              </span>
+            </a>
+          ))}
         </div>
       </section>
 

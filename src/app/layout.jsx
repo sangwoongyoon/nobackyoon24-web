@@ -2,6 +2,7 @@ import "./globals.css";
 import { site } from "@/data/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import MobileContactBar from "@/components/MobileContactBar";
 
 export const metadata = {
   metadataBase: new URL(`https://www.${site.domain}`),
@@ -34,6 +35,7 @@ export default function RootLayout({ children }) {
         <Header />
         <main>{children}</main>
         <Footer />
+        <MobileContactBar />
       </body>
     </html>
   );

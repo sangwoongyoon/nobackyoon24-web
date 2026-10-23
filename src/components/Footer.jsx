@@ -5,7 +5,7 @@ import { site } from "@/data/site";
 export default function Footer() {
   const L = site.legal;
   return (
-    <footer className="mt-20 border-t border-black/10 bg-brand-dark text-white/80">
+    <footer className="mt-20 pb-20 lg:pb-0 border-t border-black/10 bg-brand-dark text-white/80">
       <div className="container-x py-12">
         <div className="flex flex-col gap-8 md:flex-row md:justify-between">
           <div>
@@ -23,6 +23,7 @@ export default function Footer() {
             <Link href="/news" className="hover:text-white">부동산뉴스</Link>
             <Link href="/contact" className="hover:text-white">문의</Link>
             <Link href="/careers" className="hover:text-white">입사지원</Link>
+            <a href={site.contact.naverBlogUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">네이버 블로그</a>
             <Link href="/privacy" className="hover:text-white">개인정보처리방침</Link>
           </nav>
         </div>

@@ -39,6 +39,7 @@ export const site = {
     phoneHref: "tel:01092597016",            // 숫자만 (하이픈 없이)
     email: "swyoon@wonbuilding.com",
     kakaoOpenChatUrl: "https://open.kakao.com/o/sHaLb7fi", // 카카오톡 오픈채팅
+    naverBlogUrl: "https://blog.naver.com/ysw9000102",     // 네이버 블로그
     // 문의 폼 자동 전송용 Web3Forms 액세스 키 (web3forms.com 에서 무료 발급)
     formKey: "2e23cc9f-3f07-44cc-b139-d1ddd1de9120",
   },
