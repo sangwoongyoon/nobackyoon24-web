@@ -61,7 +61,7 @@ export const home = {
   // 신뢰 지표 (홈 화면 숫자 배지)
   stats: [
     { value: "8년", label: "강남 상업용 빌딩 경력" },
-    { value: "4,000억+", label: "누적 거래액" },
+    { value: "6,000억+", label: "누적 거래액" },
     { value: "W.C.D", label: "자체 데이터 시스템" },
   ],
 };
