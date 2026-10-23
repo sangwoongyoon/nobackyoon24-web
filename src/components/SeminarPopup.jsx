@@ -126,12 +126,12 @@ export default function SeminarPopup({ onSeminarPage = false }) {
           {/* 메인 CTA */}
           <a
             {...apply}
-            className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-accent-dark via-accent to-accent-dark px-6 py-5 text-[19px] font-extrabold text-brand-dark shadow-[0_8px_24px_-6px_rgba(200,162,75,.8)] transition active:scale-[.98]"
+            className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-accent-dark via-accent to-accent-dark px-6 py-5 text-[24px] font-extrabold text-brand-dark shadow-[0_8px_24px_-6px_rgba(200,162,75,.8)] transition active:scale-[.98]"
             style={{ animation: "ctaPulse 1.8s ease-in-out infinite" }}
           >
             <span className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/3 skew-x-[-20deg] bg-white/50 blur-sm" style={{ animation: "shine 2.4s ease-in-out infinite" }} />
-            <span className="relative">지금 무료로 자리 잡기</span>
-            <svg className="relative transition group-hover:translate-x-1" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M13 6l6 6-6 6" /></svg>
+            <span className="relative">지금 무료 신청</span>
+            <svg className="relative transition group-hover:translate-x-1" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M13 6l6 6-6 6" /></svg>
           </a>
           <p className="mt-2.5 text-center text-xs font-semibold text-muted">
             참가비 0원 · 자격증 없어도 OK · <span className="text-red-500">선착순 마감</span>
