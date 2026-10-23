@@ -5,7 +5,7 @@ import { boards, getPosts } from "@/lib/posts";
 export default function sitemap() {
   const base = `https://www.${site.domain}`;
   const now = new Date().toISOString().slice(0, 10);
-  const pages = ["", "/about", "/projects", "/contact", "/careers"].map((p) => ({
+  const pages = ["", "/about", "/projects", "/contact", "/seminar", "/careers"].map((p) => ({
     url: `${base}${p}`,
     lastModified: now,
   }));

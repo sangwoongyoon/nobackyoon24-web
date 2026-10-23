@@ -13,7 +13,7 @@ import { site } from "@/data/site";
 //  - botcheck(숨은 필드)로 기본 스팸을 걸러줍니다.
 // =====================================================================
 export default function ContactForm({ defaultType = "building" }) {
-  const [type, setType] = useState(defaultType); // building | recruit
+  const [type, setType] = useState(defaultType); // building | recruit | seminar
   const [agree, setAgree] = useState(false);
   const [status, setStatus] = useState("idle"); // idle | sending | success | error
 
@@ -26,7 +26,8 @@ export default function ContactForm({ defaultType = "building" }) {
     setStatus("sending");
 
     const f = e.target;
-    const kind = type === "recruit" ? "중개사 합류 문의" : "빌딩 문의";
+    const kind =
+      type === "recruit" ? "중개사 합류 문의" : type === "seminar" ? "채용세미나 신청" : "빌딩 문의";
     const payload = {
       access_key: site.contact.formKey,
       subject: `[${kind}] ${f.name.value} 님`,
@@ -90,6 +91,7 @@ export default function ContactForm({ defaultType = "building" }) {
         {[
           { id: "building", label: "빌딩 문의" },
           { id: "recruit", label: "중개사 합류" },
+          ...(defaultType === "seminar" ? [{ id: "seminar", label: "세미나 신청" }] : []),
         ].map((t) => (
           <button
             key={t.id}
@@ -129,7 +131,11 @@ export default function ContactForm({ defaultType = "building" }) {
           required
           rows={5}
           className={inputClass}
-          placeholder="문의하실 내용을 자유롭게 적어주세요. (빌딩 위치/규모, 매도·매수 희망, 합류 관심 등)"
+          placeholder={
+            type === "seminar"
+              ? "간단한 소개를 남겨주세요. (현재 하시는 일, 자격증 여부, 세미나를 알게 된 경로 등)"
+              : "문의하실 내용을 자유롭게 적어주세요. (빌딩 위치/규모, 매도·매수 희망, 합류 관심 등)"
+          }
         />
       </div>
 
@@ -172,7 +178,7 @@ export default function ContactForm({ defaultType = "building" }) {
         disabled={status === "sending"}
         className="btn-ghost w-full disabled:opacity-60"
       >
-        {status === "sending" ? "전송 중…" : "문의 보내기"}
+        {status === "sending" ? "전송 중…" : type === "seminar" ? "세미나 신청하기" : "문의 보내기"}
       </button>
       <p className="text-center text-xs text-muted">
         빠른 상담은 전화·카카오톡을 이용하세요.

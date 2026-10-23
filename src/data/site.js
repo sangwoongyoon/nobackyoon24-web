@@ -126,5 +126,6 @@ export const navItems = [
   { label: "칼럼", href: "/columns" },
   { label: "부동산뉴스", href: "/news" },
   { label: "문의", href: "/contact" },
+  { label: "채용세미나", href: "/seminar" },
   { label: "입사지원", href: "/careers" },
 ];
