@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { site } from "@/data/site";
+import { track } from "@/lib/track";
 
 // =====================================================================
 //  문의 폼 (자동 전송 방식 · Web3Forms)
@@ -49,6 +50,7 @@ export default function ContactForm({ defaultType = "building" }) {
       const data = await res.json();
       if (data.success) {
         setStatus("success");
+        track(type === "seminar" ? "seminar_apply" : "inquiry_submit", "Lead", { content_name: kind });
         f.reset();
         setAgree(false);
       } else {

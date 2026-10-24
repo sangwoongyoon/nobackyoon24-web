@@ -3,6 +3,8 @@ import { site } from "@/data/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileContactBar from "@/components/MobileContactBar";
+import Analytics from "@/components/Analytics";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 
 export const metadata = {
   metadataBase: new URL(`https://www.${site.domain}`),
@@ -36,6 +38,8 @@ export default function RootLayout({ children }) {
         <main>{children}</main>
         <Footer />
         <MobileContactBar />
+        <Analytics />
+        <VercelAnalytics />
       </body>
     </html>
   );
