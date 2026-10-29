@@ -24,16 +24,16 @@ export const seminar = {
   //  show: false 로 바꾸면 꺼짐 / endAt 이 지나면 자동으로 안 뜸
   popup: {
     show: true,
-    endAt: "2026-11-28T17:00:00+09:00",
-    dateText: "2026.11.28(토) 15:00–17:00",
+    endAt: "2026-11-22T15:00:00+09:00",
+    dateText: "2026.11.22(일) 13:00–15:00",
   },
 
   // ---- HERO ----
   heroCopy: ["다른 곳도 볼 수 있습니다.", "하지만 꼭 가야 할 곳은 따로 있습니다."],
   eyebrow: "2026 WONBUILDING",
   title: "채용 세미나 2기",
-  dateLabel: "2026.11.28 SAT",
-  timeLabel: "15:00 – 17:00",
+  dateLabel: "2026.11.22 SUN",
+  timeLabel: "13:00 – 15:00",
   conditions: ["참가비 무료", "선착순 20명"],
   heroNote: "공인중개사 자격증이 없어도 참여 가능합니다.",
 
@@ -117,7 +117,7 @@ export const seminar = {
 
   // ---- EVENT DETAILS ----
   details: [
-    { label: "일시", value: "2026년 11월 28일(토) 15:00~17:00" },
+    { label: "일시", value: "2026년 11월 22일(일) 13:00~15:00" },
     { label: "장소", value: "서울 강남구 신사동 590-16, 원빌딩 본관 지하 강의실" },
     { label: "참가비", value: "무료" },
     { label: "모집", value: "선착순 20명" },
@@ -138,7 +138,7 @@ export const seminar = {
 
   // ---- FINAL CTA ----
   finalCta: {
-    title: "11월 28일, 새로운 가능성을 직접 확인하세요.",
+    title: "11월 22일, 새로운 가능성을 직접 확인하세요.",
     button: "원빌딩 채용 세미나 2기 신청하기",
   },
 };

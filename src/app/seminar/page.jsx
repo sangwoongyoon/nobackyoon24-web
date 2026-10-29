@@ -3,13 +3,13 @@ import SeminarPopup from "@/components/SeminarPopup";
 import { seminar } from "@/data/seminar";
 import { site } from "@/data/site";
 
-const desc = `${seminar.heroCopy.join(" ")} 2026.11.28(토) 15:00~17:00 · 무료 · 선착순 20명. 현직 멘토 3인이 빌딩중개의 현실과 실전 노하우를 직접 공개합니다.`;
+const desc = `${seminar.heroCopy.join(" ")} 2026.11.22(일) 13:00~15:00 · 무료 · 선착순 20명. 현직 멘토 3인이 빌딩중개의 현실과 실전 노하우를 직접 공개합니다.`;
 
 export const metadata = {
   title: "채용세미나 2기",
   description: desc,
   openGraph: {
-    title: "원빌딩 채용 세미나 2기 | 11월 28일(토)",
+    title: "원빌딩 채용 세미나 2기 | 11월 22일(일)",
     description: desc,
     url: "/seminar",
   },
@@ -44,8 +44,8 @@ export default function SeminarPage() {
     "@type": "Event",
     name: "2026 원빌딩 채용 세미나 2기",
     description: desc,
-    startDate: "2026-11-28T15:00:00+09:00",
-    endDate: "2026-11-28T17:00:00+09:00",
+    startDate: "2026-11-22T13:00:00+09:00",
+    endDate: "2026-11-22T15:00:00+09:00",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
     isAccessibleForFree: true,
@@ -267,7 +267,7 @@ export default function SeminarPage() {
         <div className="container-x py-16 text-center sm:py-20">
           <h2 className="text-2xl font-extrabold leading-snug sm:text-4xl">{seminar.finalCta.title}</h2>
           <p className="mt-5 text-xl font-extrabold tabular-nums text-accent sm:text-2xl">
-            2026.11.28(토) 15:00–17:00
+            2026.11.22(일) 13:00–15:00
           </p>
           <p className="mt-2 text-white/80">참가비 무료 · 선착순 20명 · 자격증 없어도 참여 가능</p>
           <div className="mt-8">
@@ -281,7 +281,7 @@ export default function SeminarPage() {
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-black/10 bg-white/95 px-4 py-3 backdrop-blur lg:hidden">
         <div className="flex items-center gap-3">
           <div className="min-w-0 flex-1 leading-tight">
-            <p className="truncate text-sm font-extrabold text-brand">11.28(토) 15:00 채용세미나</p>
+            <p className="truncate text-sm font-extrabold text-brand">11.22(일) 13:00 채용세미나</p>
             <p className="text-xs text-muted">무료 · 선착순 20명</p>
           </div>
           <ApplyButton className="btn-primary shrink-0 px-5 py-2.5 text-sm">무료 신청하기</ApplyButton>

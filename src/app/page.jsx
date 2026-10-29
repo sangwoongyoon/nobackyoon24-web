@@ -37,7 +37,7 @@ export default function HomePage() {
       <section className="border-b border-black/5 bg-white">
         <div className="container-x grid grid-cols-2 gap-3 py-6 sm:grid-cols-4">
           {[
-            { label: "채용세미나 2기", sub: "11.28(토) 무료 신청", href: "https://forms.gle/xRt9vkXuRKG3fWh36", ext: true, hot: true },
+            { label: "채용세미나 2기", sub: "11.22(일) 무료 신청", href: "https://forms.gle/xRt9vkXuRKG3fWh36", ext: true, hot: true },
             { label: "매입·매각 상담", sub: "카카오톡 1:1", href: site.contact.kakaoOpenChatUrl, ext: true },
             { label: "매수·매도 프로젝트", sub: "진행 중인 물건", href: "/projects" },
             { label: "네이버 블로그", sub: "부동산 투자의 모든 것", href: site.contact.naverBlogUrl, ext: true },
