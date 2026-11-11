@@ -100,11 +100,11 @@ export const seminar = {
   videos: [
     { title: "원빌딩 세미나를 알게 된 계기", youtubeId: "wYtlW9sQFOE", thumbnail: "/images/seminar/shorts/ep01.webp", releaseLabel: "11월 9일(월) 공개" },
     { title: "첫인상 vs 입사 후 느낀 장점", youtubeId: "eNXLp8s3Wbc", thumbnail: "/images/seminar/shorts/ep02.webp", releaseLabel: "11월 10일(화) 공개" },
-    { title: "대기업 재직 중 세미나에 온 이유", youtubeId: "", thumbnail: "/images/seminar/shorts/ep03.webp", releaseLabel: "11월 11일(수) 공개" },
-    { title: "패션 업계에서 원빌딩을 선택한 이유", youtubeId: "", thumbnail: "/images/seminar/shorts/ep04.webp", releaseLabel: "11월 12일(목) 공개" },
-    { title: "세미나 듣고 입사를 결심한 이유", youtubeId: "", thumbnail: "/images/seminar/shorts/ep05.webp", releaseLabel: "11월 13일(금) 공개" },
-    { title: "대기업 퇴사하고 입사한 이유", youtubeId: "", thumbnail: "/images/seminar/shorts/ep06.webp", releaseLabel: "11월 14일(토) 공개" },
-    { title: "2기를 고민하는 분들께 한마디", youtubeId: "", thumbnail: "/images/seminar/shorts/ep07.webp", releaseLabel: "11월 15일(일) 공개" },
+    { title: "대기업 재직 중 세미나에 온 이유", youtubeId: "Q4bW9-zOFBc", thumbnail: "/images/seminar/shorts/ep03.webp", releaseLabel: "11월 11일(수) 공개" },
+    { title: "패션 업계에서 원빌딩을 선택한 이유", youtubeId: "Z_4xdydu1as", thumbnail: "/images/seminar/shorts/ep04.webp", releaseLabel: "11월 12일(목) 공개" },
+    { title: "세미나 듣고 입사를 결심한 이유", youtubeId: "QCxhg_xHZvk", thumbnail: "/images/seminar/shorts/ep05.webp", releaseLabel: "11월 13일(금) 공개" },
+    { title: "대기업 퇴사하고 입사한 이유", youtubeId: "llRFrWawET0", thumbnail: "/images/seminar/shorts/ep06.webp", releaseLabel: "11월 14일(토) 공개" },
+    { title: "2기를 고민하는 분들께 한마디", youtubeId: "bFHka6MA44Y", thumbnail: "/images/seminar/shorts/ep07.webp", releaseLabel: "11월 15일(일) 공개" },
   ],
 
   // ---- WHO SHOULD ATTEND ----
