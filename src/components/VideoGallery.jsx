@@ -22,7 +22,7 @@ export default function VideoGallery({ videos = [], pendingLabel = "곧 공개" 
     <>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
         {videos.map((v, i) => {
-          const ready = Boolean(v.youtubeId || v.src);
+          const ready = Boolean((v.youtubeId && v.isPublic !== false) || v.src);
           const thumb = v.thumbnail || (v.youtubeId ? `https://i.ytimg.com/vi/${v.youtubeId}/hqdefault.jpg` : null);
           return (
             <button

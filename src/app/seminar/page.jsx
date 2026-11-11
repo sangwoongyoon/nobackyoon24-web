@@ -3,6 +3,21 @@ import SeminarPopup from "@/components/SeminarPopup";
 import { seminar } from "@/data/seminar";
 import { site } from "@/data/site";
 
+// 유튜브 공개 여부 확인 — 비공개(401/403/404)면 카드에 공개일만 표시, 공개되면 5분 내 자동으로 "영상 보기"로 전환
+export const revalidate = 300;
+
+async function isYoutubePublic(id) {
+  try {
+    const res = await fetch(
+      `https://www.youtube.com/oembed?url=${encodeURIComponent(`https://www.youtube.com/watch?v=${id}`)}&format=json`,
+      { next: { revalidate: 300 } }
+    );
+    return res.ok;
+  } catch {
+    return true; // 일시적 네트워크 오류로 영상이 숨겨지지 않도록
+  }
+}
+
 const desc = `${seminar.heroCopy.join(" ")} 2026.11.22(일) 13:00~15:00 · 무료 · 선착순 20명. 현직 멘토 3인이 빌딩중개의 현실과 실전 노하우를 직접 공개합니다.`;
 
 export const metadata = {
@@ -38,7 +53,11 @@ function SectionHead({ en, title, desc, dark = false }) {
   );
 }
 
-export default function SeminarPage() {
+export default async function SeminarPage() {
+  const videos = await Promise.all(
+    seminar.videos.map(async (v) => (v.youtubeId ? { ...v, isPublic: await isYoutubePublic(v.youtubeId) } : v))
+  );
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Event",
@@ -194,7 +213,7 @@ export default function SeminarPage() {
             </span>
           </div>
           <div className="mt-10">
-            <VideoGallery videos={seminar.videos} pendingLabel={storiesLive ? "곧 공개" : "11/8 공개"} />
+            <VideoGallery videos={videos} pendingLabel={storiesLive ? "곧 공개" : "11/8 공개"} />
           </div>
         </div>
       </section>

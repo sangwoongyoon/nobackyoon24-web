@@ -98,7 +98,7 @@ export const seminar = {
   storiesStatus: "upcoming",
   storiesReleaseLabel: "11월 9일부터 순차 공개",
   videos: [
-    { title: "원빌딩 세미나를 알게 된 계기", youtubeId: "wYtlW9sQFOE", thumbnail: "/images/seminar/shorts/ep01.webp", releaseLabel: "11월 9일(월) 공개" },
+    { title: "원빌딩 세미나를 알게 된 계기", youtubeId: "-YulUpLuzek", thumbnail: "/images/seminar/shorts/ep01.webp", releaseLabel: "11월 9일(월) 공개" },
     { title: "첫인상 vs 입사 후 느낀 장점", youtubeId: "eNXLp8s3Wbc", thumbnail: "/images/seminar/shorts/ep02.webp", releaseLabel: "11월 10일(화) 공개" },
     { title: "대기업 재직 중 세미나에 온 이유", youtubeId: "Q4bW9-zOFBc", thumbnail: "/images/seminar/shorts/ep03.webp", releaseLabel: "11월 11일(수) 공개" },
     { title: "패션 업계에서 원빌딩을 선택한 이유", youtubeId: "Z_4xdydu1as", thumbnail: "/images/seminar/shorts/ep04.webp", releaseLabel: "11월 12일(목) 공개" },
